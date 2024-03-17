@@ -1,0 +1,222 @@
+<!--register Modal-->
+<div th:fragment="registerModal">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    id="registerModal"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Category</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            action="#"
+            th:action="@{/registerOrderDetails}"
+            method="post"
+            th:object="${orderDetail}"
+          >
+            <div class="mb-3">
+              <label for="userID" class="form-label">Customer Name</label>
+              <select
+                class="form-select"
+                id="userID"
+                name="userID"
+                th:field="*{userID}"
+              >
+                <option
+                  th:each="user : ${users}"
+                  th:value="${user.userId}"
+                  th:text="${user.firstName}"
+                ></option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="status" class="form-label">Order Status</label>
+              <select
+                class="form-select"
+                id="status"
+                name="status"
+                th:field="*{status}"
+              >
+                <option th:value="OrderPlaced" th:text="OrderPlaced"></option>
+
+                <option th:value="OrderSent" th:text="OrderSent"></option>
+
+                <option
+                  th:value="OrderReceived"
+                  th:text="OrderReceived"
+                ></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="productId" class="form-label">Product Name</label>
+              <select
+                class="form-select"
+                id="productIdy"
+                name="productId"
+                th:field="*{productId}"
+              >
+                <option
+                  th:each="product : ${products}"
+                  th:value="${product.productId}"
+                  th:text="${product.productName}"
+                ></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="quantity" class="form-label">Quantity</label>
+              <input
+                type="number"
+                class="form-control"
+                id="quantity"
+                th:field="*{quantity}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="total" class="form-label">Total Price</label>
+              <input type="number" class="form-control" id="total" disabled />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-----------------------------------------------Update Modal------------------------------------------->
+<div th:fragment="updateModal(orderId)">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    id="updateModal"
+    th:attr="id='updateModal_'+ ${orderId}"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Order</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            action="#"
+            th:action="@{/updateOrderDetails}"
+            method="post"
+            th:object="${orderDetail}"
+          >
+            <input type="hidden" th:value="${orderId}" th:name="orderId" />
+            <div class="mb-3">
+              <label for="userID" class="form-label">Customer Name</label>
+              <select
+                class="form-select"
+                id="userID"
+                name="userID"
+                th:field="*{userID}"
+              >
+                <option
+                  th:value="${ordst.user.userId}"
+                  th:text="${ordst.user.firstName}"
+                  selected
+                ></option>
+                <option th:value="5" disabled></option>
+                <option
+                  th:each="user : ${users}"
+                  th:value="${user.userId}"
+                  th:text="${user.firstName}"
+                ></option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="status" class="form-label">Order Status</label>
+              <select
+                class="form-select"
+                id="status"
+                name="status"
+                th:field="*{status}"
+              >
+                <option
+                  th:value="${ordst.status}"
+                  th:text="${ordst.status}"
+                  selected
+                ></option>
+                <option th:value="5" disabled></option>
+                <option th:value="OrderPlaced" th:text="OrderPlaced"></option>
+                <option th:value="OrderSent" th:text="OrderSent"></option>
+                <option
+                  th:value="OrderReceived"
+                  th:text="OrderReceived"
+                ></option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="productId" class="form-label">Product Name</label>
+              <select
+                class="form-select"
+                id="productIdy"
+                name="productId"
+                th:field="*{productId}"
+              >
+                <option
+                  th:value="${ordst.product.productId}"
+                  th:text="${ordst.product.productName}"
+                ></option>
+                <option th:value="5" disabled></option>
+                <option
+                  th:each="product : ${products}"
+                  th:value="${product.productId}"
+                  th:text="${product.productName}"
+                ></option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="quantity" class="form-label">Quantity</label>
+              <input
+                type="number"
+                class="form-control"
+                id="quantity"
+                th:name="quantity"
+                th:value="${ordst.quantity}"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="total" class="form-label">Total Price</label>
+              <input
+                th:value="${ordst.price}"
+                type="number"
+                class="form-control"
+                id="total"
+                disabled
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

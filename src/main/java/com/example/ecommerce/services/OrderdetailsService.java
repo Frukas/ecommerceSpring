@@ -1,6 +1,6 @@
 package com.example.ecommerce.services;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,14 @@ public class OrderdetailsService {
    private OrderDetailsRepo repo;
 
     public void registration(OrderDetails order){
-       
-        LocalDateTime now = LocalDateTime.now();
-        order.setCreatedAt(now);
-        order.setUpdatedAt(now);
-
         repo.save(order);
     }
 
-    public void update(OrderDetails order){
-        order.setUpdatedAt(LocalDateTime.now());
-        repo.delete(order);
+    public List<OrderDetails> getAllOrderDetails(){
+        return repo.findAll();
+    }
+
+    public OrderDetails findOrderDetailById(long id){
+        return repo.getReferenceById(id);
     }
 }
