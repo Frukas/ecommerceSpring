@@ -14,7 +14,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <title>Customer</title>
+    <title>Order</title>
   </head>
   <body>
     <div th:insert="~{header :: header}"></div>
@@ -50,7 +50,7 @@
             <td th:text="${ordst.user.mail}"></td>
             <td th:text="${ordst.status}"></td>
             <td th:text="${ordst.product.productName}"></td>
-            <td th:text="${ordst.product.price}"></td>
+            <td th:text="'¥' + ${ordst.product.price}"></td>
             <td
               th:text="${#temporals.format(ordst.updatedAt, 'yyyy/MM/dd')}"
             ></td>

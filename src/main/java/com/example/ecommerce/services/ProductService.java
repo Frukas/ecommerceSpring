@@ -3,6 +3,7 @@ package com.example.ecommerce.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.dto.CategoryCountDTO;
@@ -15,11 +16,11 @@ public class ProductService {
     @Autowired
     private ProductsRepo repo;
 
-    public void registration(Products product){
+    public void registration(@NonNull Products product){
         repo.save(product);
     }
 
-    public void deletion(Products product){
+    public void deletion(@NonNull Products product){
         repo.delete(product);
     }
 

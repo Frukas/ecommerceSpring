@@ -28,6 +28,17 @@ public class ProductsController {
     
     @Autowired
     private OrderdetailsService orderdetailsService;
+
+
+    @GetMapping("/")
+    public String getIndexLandingPage(Model model) {   
+        model.addAttribute("product", new ProductDTO()); 
+        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("productCount", orderdetailsService.getProductCount());
+
+        return "product";
+    }
     
     @GetMapping("/product")
     public String getLandingPage(Model model) {   

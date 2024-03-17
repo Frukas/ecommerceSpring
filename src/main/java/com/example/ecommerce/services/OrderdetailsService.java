@@ -3,6 +3,7 @@ package com.example.ecommerce.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.dto.ProductCountDTO;
@@ -15,7 +16,7 @@ public class OrderdetailsService {
    @Autowired
    private OrderDetailsRepo repo;
 
-    public void registration(OrderDetails order){
+    public void registration(@NonNull OrderDetails order){
         repo.save(order);
     }
 

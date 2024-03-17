@@ -51,7 +51,7 @@
             <td th:text="${prod.productId}"></td>
             <td th:text="${prod.productName}"></td>
             <td th:text="${prod.category.categoryName}"></td>
-            <td th:text="${prod.price}"></td>
+            <td th:text="'¥' +${prod.price}"></td>
             <td
               th:text="${#temporals.format(prod.updatedAt, 'yyyy/MM/dd')}"
             ></td>

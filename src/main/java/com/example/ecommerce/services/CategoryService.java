@@ -3,6 +3,7 @@ package com.example.ecommerce.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.models.Category;
@@ -14,12 +15,12 @@ public class CategoryService {
     @Autowired
     private CategoryRepo repo;
     
-    public void registration(Category category ){
+    public void registration(@NonNull Category category ){
 
         repo.save(category);
     }
 
-    public void deletion(Category category){
+    public void deletion(@NonNull Category category){
         repo.delete(category);
     }
 
