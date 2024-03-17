@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.example.ecommerce.dto.CategoryDTO;
 import com.example.ecommerce.models.Category;
 import com.example.ecommerce.services.CategoryService;
+import com.example.ecommerce.services.ProductService;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,7 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CategoryController {
 
     @Autowired
-    private CategoryService categoryService;  
+    private CategoryService categoryService;
+    
+    @Autowired
+    private ProductService productService;
 
     private final String REDIRECT = "redirect:/category";
 
@@ -25,6 +30,7 @@ public class CategoryController {
     public String getLandingpage(Model model) {
         model.addAttribute("category", new CategoryDTO());
         model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categoryCount",productService.getCategoriesCount());        
 
         return "category";
     }

@@ -55,7 +55,17 @@
             <td
               th:text="${#temporals.format(prod.updatedAt, 'yyyy/MM/dd')}"
             ></td>
-            <td th:text="0"></td>
+            <td
+              th:each="prCount : ${productCount}"
+              th:if="${prCount.productID == prod.productId}"
+              th:text="${prCount.count}"
+            ></td>
+            <td
+              th:each="prCount : ${productCount}"
+              th:unless="${prCount.productID == prod.productId}"
+              th:text="0"
+            ></td>
+
             <td>
               <button
                 type="button"

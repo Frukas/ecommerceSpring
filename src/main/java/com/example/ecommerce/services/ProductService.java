@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.ecommerce.dto.CategoryCountDTO;
 import com.example.ecommerce.models.Products;
 import com.example.ecommerce.repositories.ProductsRepo;
 
@@ -29,4 +30,9 @@ public class ProductService {
    public Products findProductsByID(long id){
         return repo.getReferenceById(id);
    }
+
+   public List<CategoryCountDTO> getCategoriesCount(){
+    return repo.getCategoriesCount();
+   }
+
 }

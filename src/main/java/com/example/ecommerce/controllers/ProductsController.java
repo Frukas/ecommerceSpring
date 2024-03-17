@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import com.example.ecommerce.dto.ProductDTO;
 import com.example.ecommerce.models.Products;
 import com.example.ecommerce.services.CategoryService;
+import com.example.ecommerce.services.OrderdetailsService;
 import com.example.ecommerce.services.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,14 +24,18 @@ public class ProductsController {
     private ProductService productService; 
 
     @Autowired
-    private CategoryService categoryService;       
+    private CategoryService categoryService; 
+    
+    @Autowired
+    private OrderdetailsService orderdetailsService;
     
     @GetMapping("/product")
     public String getLandingPage(Model model) {   
         model.addAttribute("product", new ProductDTO()); 
         model.addAttribute("products", productService.getAllProducts());
         model.addAttribute("categories", categoryService.getAllCategories());
-       
+        model.addAttribute("productCount", orderdetailsService.getProductCount());
+
         return "product";
     }
 

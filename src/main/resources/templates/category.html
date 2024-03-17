@@ -54,7 +54,16 @@
             <td
               th:text="${#temporals.format(cat.updatedAt, 'yyyy/MM/dd')}"
             ></td>
-            <td th:text="0"></td>
+            <td
+              th:each="catCount : ${categoryCount}"
+              th:if="${catCount.categoryID == cat.categoryID}"
+              th:text="${catCount.count}"
+            ></td>
+            <td
+              th:each="catCount : ${categoryCount}"
+              th:unless="${catCount.categoryID == cat.categoryID}"
+              th:text="0"
+            ></td>
             <td>
               <button
                 type="button"
