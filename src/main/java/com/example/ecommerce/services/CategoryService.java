@@ -1,6 +1,6 @@
 package com.example.ecommerce.services;
 
-import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,8 @@ public class CategoryService {
         repo.delete(category);
     }
 
-    public List<Category> getAllCategories(){        
+    public List<Category> getAllCategories(){   
+                  
         return repo.findAll();
     }
 

@@ -19,10 +19,10 @@ public class CategoryDTO {
     private String serialNo;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createdAt;
+    private Date date;
     
     public LocalDateTime getLocalDateTime(){
-        return createdAt.toInstant()
+        return date.toInstant()
             .atZone(ZoneId.systemDefault())
             .toLocalDateTime();
     }

@@ -9,7 +9,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Update Product</h5>
+          <h5 class="modal-title">Add Category</h5>
           <button
             type="button"
             class="btn-close"
@@ -50,7 +50,7 @@
                 type="date"
                 class="form-control"
                 id="date"
-                th:field="*{createdAt}"
+                th:field="*{date}"
               />
             </div>
             <div class="modal-footer">
@@ -122,10 +122,10 @@
               <label for="date" class="form-label">Date</label>
               <input
                 type="date"
+                th:name="date"
                 class="form-control"
-                th:name="createdAt"
-                th:value="${#temporals.format(cat.createdAt, 'yyyy-MM-dd')}"
                 id="date"
+                th:value="${#temporals.format(cat.updatedAt, 'yyyy-MM-dd')}"
               />
             </div>
             <div class="modal-footer">

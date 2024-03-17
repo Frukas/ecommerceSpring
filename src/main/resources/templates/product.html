@@ -69,6 +69,12 @@
               >
                 Delete
               </button>
+              <div
+                th:replace="~{ productModal :: updateModal(productId=${prod.productId})}"
+              ></div>
+              <div
+                th:replace="~{ productModal:: deleteModal(productId=${prod.productId})}"
+              ></div>
             </td>
           </tr>
         </tbody>

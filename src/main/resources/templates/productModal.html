@@ -75,10 +75,10 @@
               <label for="date" class="form-label">Date</label>
               <input
                 type="date"
-                th:name="createdAt"
+                th:name="date"
                 class="form-control"
                 id="date"
-                th:value="${#temporals.format(prod.createdAt, 'yyyy-MM-dd')}"
+                th:value="${#temporals.format(prod.updatedAt, 'yyyy-MM-dd')}"
               />
             </div>
             <div class="modal-footer">
@@ -211,7 +211,7 @@
                 type="date"
                 class="form-control"
                 id="date"
-                th:field="*{createdAt}"
+                th:field="*{date}"
               />
             </div>
             <div class="modal-footer">

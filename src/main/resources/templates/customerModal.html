@@ -1,0 +1,175 @@
+<!--register Modal-->
+<div th:fragment="registerModal">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    id="registerModal"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Product</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            action="#"
+            th:action="@{/registerCustomer}"
+            method="post"
+            th:object="${user}"
+          >
+            <div class="mb-3">
+              <label for="firstName" class="form-label">Customer Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                th:field="*{firstName}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="mail" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="mail"
+                th:field="*{mail}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                th:field="*{phone}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                th:field="*{address}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                th:field="*{createdAt}"
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Update Modal -->
+<div th:fragment="updateModal(userId)">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    th:attr="id='updateModal_'+ ${userId}"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Customer</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            action="#"
+            th:action="@{/updateCustomer}"
+            method="post"
+            th:object="${user}"
+          >
+            <input type="hidden" th:value="${userId}" th:name="userId" />
+            <div class="mb-3">
+              <label for="firstName" class="form-label">Customer Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                th:name="firstName"
+                th:value="${usr.firstName}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="mail" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="mail"
+                th:name="mail"
+                th:value="${usr.mail}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                th:name="phone"
+                th:value="${usr.phone}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                th:name="address"
+                th:value="${usr.address}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                th:name="createdAt"
+                th:value="${#temporals.format(usr.createdAt, 'yyyy-MM-dd')}"
+                id="date"
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

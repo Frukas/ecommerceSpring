@@ -13,19 +13,21 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductDTO {
-    private long productId;
-    private String productName;
-    private long categoryID;
-    private float price;
+public class UserDTO {
+
+    private long userId;
+
+    private String firstName;
+    private String mail;
+    private String phone;
+    private String address;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private Date createdAt;  
     
-    public LocalDateTime getLocalDateTime(){
-        return date.toInstant()
+        public LocalDateTime getLocalDateTime(){
+        return createdAt.toInstant()
             .atZone(ZoneId.systemDefault())
             .toLocalDateTime();
-    }
-
+    }    
 }

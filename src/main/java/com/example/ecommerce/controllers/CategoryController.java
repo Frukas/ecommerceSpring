@@ -23,7 +23,7 @@ public class CategoryController {
 
     @GetMapping("/category")
     public String getLandingpage(Model model) {
-        model.addAttribute("category", new Category());
+        model.addAttribute("category", new CategoryDTO());
         model.addAttribute("categories", categoryService.getAllCategories());
 
         return "category";
