@@ -19,6 +19,10 @@
   <body>
     <div th:insert="~{header :: header}"></div>
 
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+      <span th:text="${error}"></span>
+    </div>
+
     <button
       type="button"
       class="btn btn-primary m-4"
@@ -63,19 +67,20 @@
                 Edit
               </button>
 
-              <!--
               <button
                 type="button"
                 class="btn"
                 data-bs-toggle="modal"
-                th:attr="data-bs-target='#deleteModal_' + ${prod.productId}"
+                th:attr="data-bs-target='#deleteModal_' + ${usr.userId}"
               >
                 Delete
               </button>
-              -->
 
               <div
                 th:replace="~{ customerModal :: updateModal(userId=${usr.userId})}"
+              ></div>
+              <div
+                th:replace="~{ customerModal :: deleteModal(userId=${usr.userId})}"
               ></div>
             </td>
           </tr>

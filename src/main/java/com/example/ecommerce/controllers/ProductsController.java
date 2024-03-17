@@ -1,6 +1,7 @@
 package com.example.ecommerce.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 
 import com.example.ecommerce.dto.ProductDTO;
@@ -8,6 +9,7 @@ import com.example.ecommerce.models.Products;
 import com.example.ecommerce.services.CategoryService;
 import com.example.ecommerce.services.ProductService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
@@ -64,8 +66,15 @@ public class ProductsController {
     }
 
     @PostMapping("/deleteProduct")    
-    public String deleteProduct(@ModelAttribute("product") ProductDTO product){
-        productService.deletion(productService.findProductsByID(product.getProductId()));
+    public String deleteProduct(@ModelAttribute("product") ProductDTO product, RedirectAttributes redirectAttrs){
+
+        try {
+            productService.deletion(productService.findProductsByID(product.getProductId()));
+        } catch (DataIntegrityViolationException e) {
+            redirectAttrs.addFlashAttribute("error", "Cannot delete category. It is being used elsewhere.");
+            return REDIRECT;
+        }        
+ 
         return REDIRECT;  
     }
 }

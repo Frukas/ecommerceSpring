@@ -23,10 +23,10 @@ public class UserDTO {
     private String address;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createdAt;  
+    private Date date;  
     
         public LocalDateTime getLocalDateTime(){
-        return createdAt.toInstant()
+        return date.toInstant()
             .atZone(ZoneId.systemDefault())
             .toLocalDateTime();
     }    

@@ -70,7 +70,7 @@
                 type="date"
                 class="form-control"
                 id="date"
-                th:field="*{createdAt}"
+                th:field="*{date}"
               />
             </div>
             <div class="modal-footer">
@@ -159,13 +159,59 @@
               <input
                 type="date"
                 class="form-control"
-                th:name="createdAt"
-                th:value="${#temporals.format(usr.createdAt, 'yyyy-MM-dd')}"
+                th:name="date"
+                th:value="${#temporals.format(usr.updatedAt, 'yyyy-MM-dd')}"
                 id="date"
               />
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Form  Delete-->
+<div th:fragment="deleteModal(userId)">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    th:attr="id='deleteModal_'+ ${userId}"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Customer</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <h3>Do you wish to delete the entry?</h3>
+          <form
+            action="#"
+            th:action="@{/deleteCostumer}"
+            method="post"
+            th:object="${users}"
+          >
+            <input type="hidden" th:value="${userId}" th:name="userId" />
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">ok</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </form>
         </div>

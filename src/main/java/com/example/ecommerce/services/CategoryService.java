@@ -1,6 +1,5 @@
 package com.example.ecommerce.services;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

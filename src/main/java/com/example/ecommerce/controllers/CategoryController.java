@@ -66,12 +66,7 @@ public class CategoryController {
           catch(DataIntegrityViolationException e) {            
             redirectAttrs.addFlashAttribute("error", "Cannot delete category. It is being used elsewhere.");
             return REDIRECT;
-          }        
-        
-        return REDIRECT;
+          }  
+          return REDIRECT;
     }
-    
-    
-    
-
 }
