@@ -1,0 +1,189 @@
+<!--register Modal-->
+<div th:fragment="registerModal">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    id="registerModal"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Product</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            action="#"
+            th:action="@{/registerCategory}"
+            method="post"
+            th:object="${category}"
+          >
+            <div class="mb-3">
+              <label for="priceNo" class="form-label">Category Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="categoryName"
+                th:field="*{categoryName}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="priceNo" class="form-label">Serial No</label>
+              <input
+                type="text"
+                class="form-control"
+                id="serialNo"
+                th:field="*{serialNo}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                th:field="*{createdAt}"
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Update Modal-->
+<div th:fragment="updateModal(categoryID)">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    id="updateModal"
+    th:attr="id='updateModal_'+ ${categoryID}"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Category</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            action="#"
+            th:action="@{/updateCategory}"
+            method="post"
+            th:object="${category}"
+          >
+            <input
+              type="hidden"
+              th:value="${categoryID}"
+              th:name="categoryID"
+            />
+
+            <div class="mb-3">
+              <label for="priceNo" class="form-label">Category Name</label>
+              <input
+                type="text"
+                class="form-control"
+                th:name="categoryName"
+                th:value="${cat.categoryName}"
+                id="categoryName"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="priceNo" class="form-label">Serial No</label>
+              <input
+                type="text"
+                class="form-control"
+                th:name="serialNo"
+                th:value="${cat.serialNo}"
+                id="serialNo"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                th:name="createdAt"
+                th:value="${#temporals.format(cat.createdAt, 'yyyy-MM-dd')}"
+                id="date"
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Form  Delete-->
+<div th:fragment="deleteModal(categoryID)">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    th:attr="id='deleteModal_'+ ${categoryID}"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Category</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <h3>Do you wish to delete the entry?</h3>
+          <form
+            action="#"
+            th:action="@{/deleteCategory}"
+            method="post"
+            th:object="${category}"
+          >
+            <input
+              type="hidden"
+              th:value="${categoryID}"
+              th:name="categoryID"
+            />
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">ok</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

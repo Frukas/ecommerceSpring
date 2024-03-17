@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <title>Category</title>
+  </head>
+  <body>
+    <div th:insert="~{header :: header}"></div>
+
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+      <span th:text="${error}"></span>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary m-4"
+      data-bs-toggle="modal"
+      data-bs-target="#registerModal"
+    >
+      Add Category
+    </button>
+
+    <div th:replace="~{ categoriesModal:: registerModal}"></div>
+
+    <div class="d-flex justify-content-center">
+      <table class="table table-striped table-bordered mx-4">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Serial No</th>
+            <th scope="col">Date</th>
+            <th scope="col">No of Purchase</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="cat : ${categories}">
+            <td th:text="${cat.categoryID}"></td>
+            <td th:text="${cat.categoryName}"></td>
+            <td th:text="${cat.serialNo}"></td>
+            <td
+              th:text="${#temporals.format(cat.updatedAt, 'yyyy/MM/dd')}"
+            ></td>
+            <td th:text="0"></td>
+            <td>
+              <button
+                type="button"
+                class="btn"
+                data-bs-toggle="modal"
+                th:attr="data-bs-target='#updateModal_' + ${cat.categoryID}"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                class="btn"
+                data-bs-toggle="modal"
+                th:attr="data-bs-target='#deleteModal_' + ${cat.categoryID}"
+              >
+                Delete
+              </button>
+
+              <div
+                th:replace="~{ categoriesModal :: updateModal(categoryID=${cat.categoryID})}"
+              ></div>
+              <div
+                th:replace="~{ categoriesModal:: deleteModal(categoryID=${cat.categoryID})}"
+              ></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

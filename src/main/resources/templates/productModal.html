@@ -1,0 +1,232 @@
+<!-- Modal Form  Update-->
+<div th:fragment="updateModal(productId)">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    th:attr="id='updateModal_'+ ${productId}"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Product</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            action="#"
+            th:action="@{/updateProduct}"
+            method="post"
+            th:object="${product}"
+          >
+            <input type="hidden" th:value="${productId}" th:name="productId" />
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Product Name</label
+              >
+              <input
+                type="text"
+                th:name="productName"
+                th:value="${prod.productName}"
+                class="form-control"
+                id="productName"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <select
+                class="form-select"
+                th:name="categoryID"
+                id="category"
+                name="category"
+                th:field="*{categoryID}"
+              >
+                <option
+                  th:value="${prod.category.categoryID}"
+                  th:text="${prod.category.categoryName}"
+                  selected
+                ></option>
+                <option
+                  th:each="category : ${categories}"
+                  th:value="${category.categoryID}"
+                  th:text="${category.categoryName}"
+                ></option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="priceNo" class="form-label">Price No</label>
+              <input
+                type="number"
+                th:name="price"
+                class="form-control"
+                id="priceNo"
+                th:value="${prod.price}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                th:name="createdAt"
+                class="form-control"
+                id="date"
+                th:value="${#temporals.format(prod.createdAt, 'yyyy-MM-dd')}"
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Update</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Form  Delete-->
+<div th:fragment="deleteModal(productId)">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    th:attr="id='deleteModal_'+ ${productId}"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Product</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <h3>Do you wish to delete the entry?</h3>
+          <form
+            action="#"
+            th:action="@{/deleteProduct}"
+            method="post"
+            th:object="${product}"
+          >
+            <input type="hidden" th:value="${productId}" th:name="productId" />
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">ok</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Form  Register-->
+<div th:fragment="registerModal">
+  <div
+    class="modal fade"
+    data-bs-backdrop="static"
+    id="registerModal"
+    tabindex="-1"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Product</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form
+            action="#"
+            th:action="@{/registerProduct}"
+            method="post"
+            th:object="${product}"
+          >
+            <div class="mb-3">
+              <label for="productName" class="form-label">Product Name</label>
+              <input
+                type="text"
+                th:field="*{productName}"
+                class="form-control"
+                id="productName"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <select
+                class="form-select"
+                id="category"
+                name="category"
+                th:field="*{categoryID}"
+              >
+                <option
+                  th:each="category : ${categories}"
+                  th:value="${category.categoryID}"
+                  th:text="${category.categoryName}"
+                ></option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="priceNo" class="form-label">Price No</label>
+              <input
+                type="number"
+                class="form-control"
+                id="priceNo"
+                th:field="*{price}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                th:field="*{createdAt}"
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Add</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
